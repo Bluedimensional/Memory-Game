@@ -1,0 +1,97 @@
+/*
+ * Create a list that holds all of your cards
+ */
+
+
+
+/*
+ * Display the cards on the page
+ *   - shuffle the list of cards using the provided "shuffle" method below
+ *   - loop through each card and create its HTML
+ *   - add each card's HTML to the page
+ */
+
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryVaff
+    }
+
+    return array;
+}
+
+
+/*
+ * . If a card is clicked:
+ *  -
+ *  -
+ *  -
+ *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
+
+
+const cards = document.querySelectorAll('.card');
+
+const deck = document.querySelector('.deck');
+
+// set up the event listener for a card
+deck.addEventListener('click', event => {
+	const clickTarget = event.target;
+	if (clickTarget.classList.contains('card')) {
+	}
+});
+
+// display the card's symbol (put this functionality in another function that you call from this one)
+function toggleCard(clickTarget) {
+    clickTarget.classList.toggle('open');
+    clickTarget.classList.toggle('show');
+}
+
+// add the card to a *list* of "open" cards (put this functionality in another function that you call from this one). we can do this by creating an array variable and pushing our click targets into it.
+let toggledCards = [];
+
+// push the clickTarget , if it passes our conditionals, into the toggledCards array. last, I’m going to call our new function addToggleCard after the toggleCard invocation.
+// only push into our array if less than two cards are in that array.
+deck.addEventListener('click', event => {
+    const clickTarget = event.target;
+    if (clickTarget.classList.contains('card') &&
+        toggledCards.length < 2) {
+        toggleCard(clickTarget);
+        addToggleCard(clickTarget);
+        if (toggledCards.length === 2) {
+            console.log('Two cards!');
+        }
+    }
+});
+
+function toggleCard(clickTarget) {
+    clickTarget.classList.toggle('open');
+    clickTarget.classList.toggle('show');
+}
+
+function addToggleCard(clickTarget) {
+    toggledCards.push(clickTarget);
+    console.log(toggledCards);
+}
+
+// if the list already has another card, check to see if the two cards match. Compare the two cards in the array using their index and the cards' firstElementChil property's className. This is the "i", the icon for that card from the HTML.
+
+function checkForMatch() {
+    if (
+        toggledCards[0].firstElementChild.className ===
+        toggledCards[1].firstElementChild.className
+    ) {
+        console.log('Match!');;
+    } else {
+        console.log('No Match!');
+    }
+}
