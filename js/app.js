@@ -1,10 +1,4 @@
 /*
- * Create a list that holds all of your cards
- */
-
-
-
-/*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
@@ -44,16 +38,10 @@ const cards = document.querySelectorAll('.card');
 const deck = document.querySelector('.deck');
 
 // set up the event listener for a card
-deck.addEventListener('click', event => {
-	const clickTarget = event.target;
-	if (clickTarget.classList.contains('card')) {
-	}
-});
-
-// display the card's symbol (put this functionality in another function that you call from this one)
-function toggleCard(clickTarget) {
-    clickTarget.classList.toggle('open');
-    clickTarget.classList.toggle('show');
+for (card of cards) {
+    card.addEventListener('click', () => {
+        console.log('Hello i am a card');
+    });
 }
 
 // add the card to a *list* of "open" cards (put this functionality in another function that you call from this one). we can do this by creating an array variable and pushing our click targets into it.
@@ -63,35 +51,53 @@ let toggledCards = [];
 // only push into our array if less than two cards are in that array.
 deck.addEventListener('click', event => {
     const clickTarget = event.target;
-    if (clickTarget.classList.contains('card') &&
-        toggledCards.length < 2) {
+    if (isClickedValid(clickTarget
+        )) {
         toggleCard(clickTarget);
         addToggleCard(clickTarget);
-        if (toggledCards.length === 2) {
-            console.log('Two cards!');
+        if (toggledCards.length === 2) { // every time user toggles two cards, check for match
+            checkForMatch(clickTarget);
         }
     }
 });
 
-function toggleCard(clickTarget) {
-    clickTarget.classList.toggle('open');
-    clickTarget.classList.toggle('show');
+function isClickedValid(clickTarget) {
+    return (
+        clickTarget.classList.contains('card') &&      // is it a card
+        !clickTarget.classList.contains('match') &&   //  does the target NOT contain the class match?
+        toggledCards.length < 2 &&                    // is array's length less than 2?
+        !toggledCards.includes(clickTarget)          // does toggledCards array NOT include clickTarget?
+        );
 }
 
-function addToggleCard(clickTarget) {
+
+
+
+function toggleCard(card) {      // toggle the cards
+    card.classList.toggle('open');
+    card.classList.toggle('show');
+}
+
+function addToggleCard(clickTarget) { // push the clickTarget into the toggledCards array
     toggledCards.push(clickTarget);
     console.log(toggledCards);
 }
 
-// if the list already has another card, check to see if the two cards match. Compare the two cards in the array using their index and the cards' firstElementChil property's className. This is the "i", the icon for that card from the HTML.
-
+// if the list already has another card, check to see if the two cards match. Compare the two cards in the array using their index and className
 function checkForMatch() {
     if (
         toggledCards[0].firstElementChild.className ===
-        toggledCards[1].firstElementChild.className
+        toggledCards[1].firstElementChild.className // check each element in the array against each other's child element's className property. this compares the two icons against each other.
     ) {
-        console.log('Match!');;
+        toggledCards[0].classList.toggle('match'); //toggle match class on both elements
+        toggledCards[1].classList.toggle('match');
+        toggledCards = []; // reset the array
     } else {
-        console.log('No Match!');
+        setTimeout(() => {
+            toggleCard(toggledCards[0]);
+            toggleCard(toggledCards[1]);
+            toggledCards = [];
+        }, 1000);
+
     }
 }
