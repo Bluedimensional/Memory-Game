@@ -6,6 +6,7 @@
  */
 
 
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -15,11 +16,26 @@ function shuffle(array) {
         currentIndex -= 1;
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryVaff
+        array[randomIndex] = temporaryValue;
     }
 
     return array;
 }
+
+
+const deck = document.querySelector('.deck');
+
+
+// shuffle the deck
+function shuffleDeck() {
+    const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));       // stores elements to be shuffled as a nodeList
+    const shuffledCards = shuffle(cardsToShuffle);        // pass cardsToShuffle as an argument to shuffle and store as shuf
+    for (card of shuffledCards) {
+        deck.appendChild(card);
+    }
+
+}
+shuffleDeck();
 
 
 /*
@@ -36,7 +52,6 @@ function shuffle(array) {
 
 // const cards = document.querySelectorAll('.card');
 
-const deck = document.querySelector('.deck');
 
 // set up the event listener for a card
 // for (card of cards) {
