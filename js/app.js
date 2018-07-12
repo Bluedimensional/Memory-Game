@@ -81,6 +81,7 @@ deck.addEventListener('click', event => {
         if (toggledCards.length === 2) { // every time user toggles two cards, check for match
             checkForMatch(clickTarget);
             addMove();
+            checkScore(); // call checkScore after every move
         }
     }
 });
@@ -125,3 +126,23 @@ function checkForMatch() {
 
     }
 }
+
+
+function checkScore() {
+    if (moves === 16 || moves === 24
+        ) { hideStar();
+    }
+}
+
+function hideStar() {
+    const starList = document.querySelectorAll('.stars li');
+    for (star of starList) {
+        if (star.style.display != 'none') { // if the li already has a display set to none, skip it
+            star.style.display = 'none';
+            break;
+        }
+
+    }
+}
+hideStar();
+hideStar();
