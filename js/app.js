@@ -77,6 +77,10 @@ deck.addEventListener('click', event => {
     const clickTarget = event.target;
     if (isClickedValid(clickTarget
         )) {
+        if (clockOff) {
+            startClock();
+            clockOff = false;
+        }
         toggleCard(clickTarget);
         addToggleCard(clickTarget);
         if (toggledCards.length === 2) { // every time user toggles two cards, check for match
@@ -151,28 +155,7 @@ hideStar();
 
 // time and clock
 
-// startClock();
-
-// function startClock() {
-//     time = 0;
-//     let clockId = setInterval(() => {
-//         time++;
-//         console.log(time);
-//     }, 1000);
-// }
-// startClock();
-
 let clockOff = true;
-
-deck.addEventListener('click', event => {
-    const clickTarget = event.target;
-    if (isClickedValid(clickTarget)) {
-        if (clockOff) {
-            startClock();
-            clockOff = false;
-        }
-    }
-});
 
 let time = 0;
 
