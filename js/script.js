@@ -5,3 +5,5 @@ const listOfElements = document.querySelectorAll('h2');
 for(let i = 0; i < listOfElements.length; i++) {
 	console.log();
 }
+
+

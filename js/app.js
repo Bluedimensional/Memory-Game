@@ -5,6 +5,7 @@
  *   - add each card's HTML to the page
  */
 
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -33,16 +34,16 @@ function shuffle(array) {
  */
 
 
-const cards = document.querySelectorAll('.card');
+// const cards = document.querySelectorAll('.card');
 
 const deck = document.querySelector('.deck');
 
 // set up the event listener for a card
-for (card of cards) {
-    card.addEventListener('click', () => {
-        console.log('Hello i am a card');
-    });
-}
+// for (card of cards) {
+//     card.addEventListener('click', () => {
+//         console.log('Hello i am a card');
+//     });
+// }
 
 // add the card to a *list* of "open" cards (put this functionality in another function that you call from this one). we can do this by creating an array variable and pushing our click targets into it.
 let toggledCards = [];
