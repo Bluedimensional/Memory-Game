@@ -70,6 +70,7 @@ shuffleDeck();
 // add the card to a *list* of "open" cards (put this functionality in another function that you call from this one). we can do this by creating an array variable and pushing our click targets into it.
 let toggledCards = [];
 
+
 // push the clickTarget , if it passes our conditionals, into the toggledCards array. last, I’m going to call our new function addToggleCard after the toggleCard invocation.
 // only push into our array if less than two cards are in that array.
 deck.addEventListener('click', event => {
@@ -146,3 +147,50 @@ function hideStar() {
 }
 hideStar();
 hideStar();
+
+
+// time and clock
+
+// startClock();
+
+// function startClock() {
+//     time = 0;
+//     let clockId = setInterval(() => {
+//         time++;
+//         console.log(time);
+//     }, 1000);
+// }
+// startClock();
+
+let clockOff = true;
+
+deck.addEventListener('click', event => {
+    const clickTarget = event.target;
+    if (isClickedValid(clickTarget)) {
+        if (clockOff) {
+            startClock();
+            clockOff = false;
+        }
+    }
+});
+
+let time = 0;
+
+function startClock() {
+    let clockId = setInterval(() => {
+        time++;
+        console.log('time');
+    }, 1000);
+}
+
+function displayTime() {
+    const clock = document.querySelector('.clock');
+    console.log(clock);
+    clock.innerHTML = time;
+}
+
+const minutes = time / 60;
+const seconds = time % 60;
+
+
+
