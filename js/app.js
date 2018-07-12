@@ -25,12 +25,19 @@ function shuffle(array) {
 
 const deck = document.querySelector('.deck');
 
+let moves = 0;
+
+function addMove() {
+    moves++;
+    const movesText = document.querySelector('.moves');
+    movesText.innerHTML = moves;
+}
 
 // shuffle the deck
 function shuffleDeck() {
     const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));       // stores elements to be shuffled as a nodeList
     const shuffledCards = shuffle(cardsToShuffle);        // pass cardsToShuffle as an argument to shuffle and store as shuf
-    for (card of shuffledCards) {
+    for (card of shuffledCards) {   // for each card in the shuffledCards array, append this card to the deck element
         deck.appendChild(card);
     }
 
@@ -73,6 +80,7 @@ deck.addEventListener('click', event => {
         addToggleCard(clickTarget);
         if (toggledCards.length === 2) { // every time user toggles two cards, check for match
             checkForMatch(clickTarget);
+            addMove();
         }
     }
 });
