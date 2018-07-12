@@ -22,10 +22,13 @@ function shuffle(array) {
     return array;
 }
 
-
+// Global variables
 const deck = document.querySelector('.deck');
-
 let moves = 0;
+let toggledCards =[];
+let clockOff = true;
+let time = 0;
+let clockId;
 
 function addMove() {
     moves++;
@@ -43,33 +46,6 @@ function shuffleDeck() {
 
 }
 shuffleDeck();
-
-
-/*
- * . If a card is clicked:
- *  -
- *  -
- *  -
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-
-// const cards = document.querySelectorAll('.card');
-
-
-// set up the event listener for a card
-// for (card of cards) {
-//     card.addEventListener('click', () => {
-//         console.log('Hello i am a card');
-//     });
-// }
-
-// add the card to a *list* of "open" cards (put this functionality in another function that you call from this one). we can do this by creating an array variable and pushing our click targets into it.
-let toggledCards = [];
-
 
 // push the clickTarget , if it passes our conditionals, into the toggledCards array. last, I’m going to call our new function addToggleCard after the toggleCard invocation.
 // only push into our array if less than two cards are in that array.
@@ -152,28 +128,33 @@ function hideStar() {
 hideStar();
 hideStar();
 
-
 // time and clock
+function displayTime() {
+    const clock = document.querySelector('.clock'); // store span.clock in clock
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    if (seconds < 10) {                                // pad seconds with a 0 if less than 10 seconds
+        clock.innerHTML = `${minutes}:0${seconds}`;
+    } else {
+        clock.innerHTML = `${minutes}:${seconds};`
+    }
+}
 
-let clockOff = true;
-
-let time = 0;
 
 function startClock() {
-    let clockId = setInterval(() => {
+    clockId = setInterval(() => {
         time++;
-        console.log('time');
+        displayTime();
     }, 1000);
 }
 
-function displayTime() {
-    const clock = document.querySelector('.clock');
-    console.log(clock);
-    clock.innerHTML = time;
+function stopClock() {
+    clearInterval(clockId);
 }
 
-const minutes = time / 60;
-const seconds = time % 60;
+
+
+
 
 
 
