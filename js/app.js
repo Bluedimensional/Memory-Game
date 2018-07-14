@@ -250,7 +250,7 @@ function resetStars() { // reset stars to 0, loop through the starList setting e
 
 document.querySelector('.restart').addEventListener('click', resetGame);
 
-document.querySelector('.modal-replay').addEventListener('click', replayGame);
+document.querySelector('.modal-replay').addEventListener('click', replayGame);        // clicking modal replay button calls replayGame
 
 
 function gameOver() { // stop the clock, write to modal, and toggle modal
@@ -259,15 +259,15 @@ function gameOver() { // stop the clock, write to modal, and toggle modal
     toggleModal();
 }
 
-function replayGame() { //
+function replayGame() { // resets game and closes modal
     resetGame();
     toggleModal();
 }
 
-function resetCards() {
+function resetGame() {
     const cards = document.querySelectorAll('.deck li');
     for (let card of cards) {
-        card.className = '.card';
+        card.className = 'card';
     }
 }
 
