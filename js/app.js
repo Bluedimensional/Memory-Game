@@ -5,7 +5,7 @@
  *   - add each card's HTML to the page
  */
 
-
+// TODO: difficulty levels - length ot time unmacthed cards stay open
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -29,6 +29,8 @@ let toggledCards =[];
 let clockOff = true;
 let time = 0;
 let clockId;
+let matched = 0;
+const TOTAL_PAIRS = 2; // 8 pairs wins a game - set to lower than 8 for testing
 
 function addMove() {
     moves++;
@@ -63,6 +65,7 @@ deck.addEventListener('click', event => {
             checkForMatch(clickTarget);
             addMove();
             checkScore(); // call checkScore after every move
+
         }
     }
 });
@@ -94,10 +97,16 @@ function checkForMatch() {
     if (
         toggledCards[0].firstElementChild.className ===
         toggledCards[1].firstElementChild.className // check each element in the array against each other's child element's className property. this compares the two icons against each other.
+
     ) {
         toggledCards[0].classList.toggle('match'); //toggle match class on both elements
         toggledCards[1].classList.toggle('match');
         toggledCards = []; // reset the array
+        matched++; // increment global variable
+         if (matched === TOTAL_PAIRS) {               // call gameOver if there are 8 pairs of cards open
+    gameOver();
+}
+
     } else {
         setTimeout(() => {
             toggleCard(toggledCards[0]);
@@ -153,6 +162,115 @@ function stopClock() {
 }
 
 
+// modal window
+function toggleModal() {
+    const modal = document.querySelector('.modal-background');
+    modal.classList.toggle('hide');
+}
+
+toggleModal(); // open modal
+toggleModal(); // close modal
+
+
+// modal tests
+// time = 122;
+// displayTime();
+// moves = 16;
+// checkScore(); // 2 stars
+
+writeModalStats(); // write stats
+toggleModal(); // open modal
+
+function writeModalStats() {
+    const timeStat = document.querySelector('.modal-time');
+    const clockTime = document.querySelector('.clock').innerHTML;
+    const movesStat = document.querySelector('.modal-moves');
+    const starsStat = document.querySelector('.modal-stars');
+    const stars = getStars();
+
+
+    timeStat.innerHTML = `Time = ${clockTime}`;
+    movesStat.innerHTML = `Moves = ${moves}`;
+    starsStat.innerHTML = `Stars = ${stars}`;
+}
+
+function getStars() {
+    stars = document.querySelectorAll('.stars li');
+    starCount = 0;
+    for (star of stars) {
+        if (star.style.display != 'none') {
+            starCount++;
+        }
+    }
+    console.log(starCount); // 2
+    return starCount;
+}
+
+
+/*
+ * Modal Window Buttons
+ */
+document.querySelector('.modal-cancel').addEventListener('click', () => {
+    toggleModal();
+});
+
+document.querySelector('.modal-replay').addEventListener('click', () => {
+    console.log('replay');
+});
+
+
+/*
+ *  Reset
+ */
+function resetGame() {
+    resetClockAndTime();
+    resetMoves();
+    resetStars();
+    shuffleDeck();
+}
+
+function resetClockAndTime() {
+    stopClock();
+    clockOff = true;
+    time = 0;
+    displayTime();
+}
+
+function resetMoves() {       // set global variable moves to 0, change the score display of moves back to 0.
+    moves = 0;
+    document.querySelector('.moves').innerHTML = moves;
+}
+
+function resetStars() { // reset stars to 0, loop through the starList setting each star's display property back to inline from none
+    stars = 0;
+    const starList = document.querySelectorAll('.stars li');
+    for (star of starList) {
+        star.style.display = 'inline';
+    }
+}
+
+document.querySelector('.restart').addEventListener('click', resetGame);
+
+document.querySelector('.modal-replay').addEventListener('click', replayGame);
+
+
+function gameOver() { // stop the clock, write to modal, and toggle modal
+    stopClock();
+    writeModalStats();
+    toggleModal();
+}
+
+function replayGame() { //
+    resetGame();
+    toggleModal();
+}
+
+function resetCards() {
+    const cards = document.querySelectorAll('.deck li');
+    for (let card of cards) {
+        card.className = '.card';
+    }
+}
 
 
 
