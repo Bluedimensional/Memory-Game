@@ -30,7 +30,7 @@ let clockOff = true;
 let time = 0;
 let clockId;
 let matched = 0;
-const TOTAL_PAIRS = 2; // 8 pairs wins a game - set to lower than 8 for testing
+const TOTAL_PAIRS = 1; // 8 pairs wins a game - set to lower than 8 for testing
 
 function addMove() {
     moves++;
@@ -107,7 +107,7 @@ function checkForMatch() {
     gameOver();
 }
 
-    } else {
+    } else {                                           // length of time unmatched cards stay open. shorter the time, higher the difficulty.
         setTimeout(() => {
             toggleCard(toggledCards[0]);
             toggleCard(toggledCards[1]);
@@ -168,8 +168,8 @@ function toggleModal() {
     modal.classList.toggle('hide');
 }
 
-toggleModal(); // open modal
-toggleModal(); // close modal
+// toggleModal(); // open modal
+// toggleModal(); // close modal
 
 
 // modal tests
@@ -179,7 +179,7 @@ toggleModal(); // close modal
 // checkScore(); // 2 stars
 
 writeModalStats(); // write stats
-toggleModal(); // open modal
+// toggleModal(); // open modal
 
 function writeModalStats() {
     const timeStat = document.querySelector('.modal-time');
@@ -202,7 +202,6 @@ function getStars() {
             starCount++;
         }
     }
-    console.log(starCount); // 2
     return starCount;
 }
 
@@ -214,9 +213,9 @@ document.querySelector('.modal-cancel').addEventListener('click', () => {
     toggleModal();
 });
 
-document.querySelector('.modal-replay').addEventListener('click', () => {
-    console.log('replay');
-});
+// document.querySelector('.modal-replay').addEventListener('click', () => {
+//     console.log('replay');
+// });
 
 
 /*

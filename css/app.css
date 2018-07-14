@@ -65,6 +65,14 @@ h1 {
     /*box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);*/
 }
 
+/* Card Animations */
+
+@keyframes card-match {
+    0% {transform: rotate(90deg); background-color: #3EEFFF; font-size: 16px;  }
+    50% {transform: rotate(180deg); background-color: #1C7BFF; font-size: 144px; }
+    100% {transform: rotate(360deg); background-color: #68A7FF; font-size: 32px; }
+}
+
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
@@ -79,6 +87,9 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+     transform: rotate(0deg) scale(0.8, 0.8) ;
+      animation-name: card-match;
+    animation-duration: .5s;
 }
 
 /*
