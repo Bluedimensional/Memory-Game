@@ -30,7 +30,7 @@ let clockOff = true;
 let time = 0;
 let clockId;
 let matched = 0;
-const TOTAL_PAIRS = 1; // 8 pairs wins a game - set to lower than 8 for testing
+const TOTAL_PAIRS = 8; // 8 pairs wins a game - set to lower than 8 for testing
 
 function addMove() {
     moves++;
@@ -108,6 +108,8 @@ function checkForMatch() {
 }
 
     } else {                                           // length of time unmatched cards stay open. shorter the time, higher the difficulty.
+        // TODO: apply CSS shake animation before
+        // toggledCards[0].firstElementChild.className = 'cleared';
         setTimeout(() => {
             toggleCard(toggledCards[0]);
             toggleCard(toggledCards[1]);
@@ -161,24 +163,13 @@ function stopClock() {
     clearInterval(clockId);
 }
 
-
 // modal window
 function toggleModal() {
     const modal = document.querySelector('.modal-background');
     modal.classList.toggle('hide');
 }
 
-// toggleModal(); // open modal
-// toggleModal(); // close modal
-
-// modal tests
-// time = 122;
-// displayTime();
-// moves = 16;
-// checkScore(); // 2 stars
-
 writeModalStats(); // write stats
-// toggleModal(); // open modal
 
 function writeModalStats() {
     const timeStat = document.querySelector('.modal-time');
@@ -186,7 +177,6 @@ function writeModalStats() {
     const movesStat = document.querySelector('.modal-moves');
     const starsStat = document.querySelector('.modal-stars');
     const stars = getStars();
-
 
     timeStat.innerHTML = `Time = ${clockTime}`;
     movesStat.innerHTML = `Moves = ${moves}`;
@@ -212,17 +202,10 @@ document.querySelector('.modal-cancel').addEventListener('click', () => {
     toggleModal();
 });
 
-// document.querySelector('.modal-replay').addEventListener('click', () => {
-//     console.log('replay');
-// });
-
 
 /*
  *  Reset
  */
-function resetGame() {
-
-}
 
 function resetClockAndTime() {
     stopClock();
@@ -272,12 +255,24 @@ function resetGame() {
     shuffleDeck();
 }
 
+/*
+ * TODO: create a "Matched Box" that will hold successfully matched pairs of cards.
+ * goal: move li after .match id added to it, from ul.deck to ul.cleared. so, i need to cut the li.card and paste it into the other ul.cleared. jsut changing the class will not change its location in the tree.
 
-// from FEND liveHelp
-// ```modal.style.display = 'block';```
-// and
-// ```modal.style.display = 'none';```
+get and update
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+
+*/
 
 
 
+// TODO: The game displays a star rating (from 1 to at least 3) that reflects the player's performance. At the beginning of a game, it should display at least 3 stars. After some number of moves, it should change to a lower star rating. After a few more moves, it should change to a even lower star rating (down to 1).
 
+// TODO: when two cards do not match, apply a shake CSS animation. When array contains two cards that !=.

@@ -43,7 +43,7 @@ h1 {
     min-height: 680px;
     background: #336699;
     padding: 32px;
-    border-radius: 0px;
+    border-radius: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -65,13 +65,39 @@ h1 {
     /*box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);*/
 }
 
-/* Card Animations */
+/* Card Match Animations */
 
 @keyframes card-match {
     0% {transform: rotate(90deg); background-color: #3EEFFF; font-size: 16px;  }
     50% {transform: rotate(180deg); background-color: #1C7BFF; font-size: 144px; }
     100% {transform: rotate(360deg); background-color: #68A7FF; font-size: 32px; }
 }
+
+.cleared {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 
 .deck .card.open {
     transform: rotateY(0);
@@ -87,8 +113,8 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
-     transform: rotate(0deg) scale(0.8, 0.8) ;
-      animation-name: card-match;
+    transform: rotate(0deg) scale(0.8, 0.8) ;
+    animation-name: card-match;
     animation-duration: .5s;
 }
 
@@ -176,4 +202,17 @@ h1 {
 
  .hide {
     display: none;
+ }
+
+ /* Box for successfully matched card pairs */
+ .matched-box {
+    width: 660px;
+    background: grey;
+    padding: 32px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /*align-items: left;*/
+    margin: 0 0 3em;
  }
