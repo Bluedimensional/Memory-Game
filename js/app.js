@@ -171,7 +171,6 @@ function toggleModal() {
 // toggleModal(); // open modal
 // toggleModal(); // close modal
 
-
 // modal tests
 // time = 122;
 // displayTime();
@@ -222,10 +221,7 @@ document.querySelector('.modal-cancel').addEventListener('click', () => {
  *  Reset
  */
 function resetGame() {
-    resetClockAndTime();
-    resetMoves();
-    resetStars();
-    shuffleDeck();
+
 }
 
 function resetClockAndTime() {
@@ -257,6 +253,7 @@ function gameOver() { // stop the clock, write to modal, and toggle modal
     stopClock();
     writeModalStats();
     toggleModal();
+    matched = 0;
 }
 
 function replayGame() { // resets game and closes modal
@@ -269,8 +266,17 @@ function resetGame() {
     for (let card of cards) {
         card.className = 'card';
     }
+    resetClockAndTime();
+    resetMoves();
+    resetStars();
+    shuffleDeck();
 }
 
+
+// from FEND liveHelp
+// ```modal.style.display = 'block';```
+// and
+// ```modal.style.display = 'none';```
 
 
 
