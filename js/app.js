@@ -121,7 +121,7 @@ function checkForMatch() {
 
 
 function checkScore() {
-    if (moves === 16 || moves === 24
+    if (moves === 8 || moves === 16
         ) { hideStar();
     }
 }
@@ -136,8 +136,8 @@ function hideStar() {
 
     }
 }
-hideStar();
-hideStar();
+// hideStar();
+// hideStar();
 
 // time and clock
 function displayTime() {
@@ -227,7 +227,7 @@ function resetStars() { // reset stars to 0, loop through the starList setting e
     }
 }
 
-document.querySelector('.restart').addEventListener('click', resetGame);
+document.querySelector('.reset-icon').addEventListener('click', resetGame);  // clicking reset button calls resetGame
 
 document.querySelector('.modal-replay').addEventListener('click', replayGame);        // clicking modal replay button calls replayGame
 
@@ -244,7 +244,7 @@ function replayGame() { // resets game and closes modal
     toggleModal();
 }
 
-function resetGame() {
+function resetGame() {     // resets game without closing modal
     const cards = document.querySelectorAll('.deck li');
     for (let card of cards) {
         card.className = 'card';
