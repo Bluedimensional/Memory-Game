@@ -30,12 +30,14 @@ let clockOff = true;
 let time = 0;
 let clockId;
 let matched = 0;
-const TOTAL_PAIRS = 8; // 8 pairs wins a game - set to lower than 8 for testing
+const TOTAL_PAIRS = 1; // 8 pairs wins a game - set to lower than 8 for testing
+let nonMatch = document.querySelectorAll('.open'); //
+
 
 function addMove() {
     moves++;
-    const movesText = document.querySelector('.moves');
-    movesText.innerHTML = moves;
+    const movesText = document.querySelector('.moves'); // get span.moves
+    movesText.innerHTML = moves;  // set span.moves' innerHTML to updated number moves
 }
 
 // shuffle the deck
@@ -109,7 +111,7 @@ function checkForMatch() {
 
     } else {                                           // length of time unmatched cards stay open. shorter the time, higher the difficulty.
         // TODO: apply CSS shake animation before
-        // toggledCards[0].firstElementChild.className = 'cleared';
+
         setTimeout(() => {
             toggleCard(toggledCards[0]);
             toggleCard(toggledCards[1]);
@@ -147,7 +149,7 @@ function displayTime() {
     if (seconds < 10) {                                // pad seconds with a 0 if less than 10 seconds
         clock.innerHTML = `${minutes}:0${seconds}`;
     } else {
-        clock.innerHTML = `${minutes}:${seconds};`
+        clock.innerHTML = `${minutes}:${seconds}`
     }
 }
 
@@ -202,7 +204,6 @@ document.querySelector('.modal-cancel').addEventListener('click', () => {
     toggleModal();
 });
 
-
 /*
  *  Reset
  */
@@ -228,9 +229,7 @@ function resetStars() { // reset stars to 0, loop through the starList setting e
 }
 
 document.querySelector('.reset-icon').addEventListener('click', resetGame);  // clicking reset button calls resetGame
-
 document.querySelector('.modal-replay').addEventListener('click', replayGame);        // clicking modal replay button calls replayGame
-
 
 function gameOver() { // stop the clock, write to modal, and toggle modal
     stopClock();
@@ -275,4 +274,4 @@ get and update
 
 // TODO: The game displays a star rating (from 1 to at least 3) that reflects the player's performance. At the beginning of a game, it should display at least 3 stars. After some number of moves, it should change to a lower star rating. After a few more moves, it should change to a even lower star rating (down to 1).
 
-// TODO: when two cards do not match, apply a shake CSS animation. When array contains two cards that !=.
+// TODO: when two cards do not match, apply a shake CSS animation. When array contains two cards that

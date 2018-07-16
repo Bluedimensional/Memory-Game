@@ -105,7 +105,7 @@ h1 {
     font-size: 33px;
     transform: rotate(0deg) scale(0.8, 0.8) ;
     animation-name: card-match;
-    animation-duration: .25s;
+    animation-duration: .5s;
 }
 
 @keyframes card-match {
@@ -114,7 +114,6 @@ h1 {
     50% {transform: rotate(360deg); background-color: #1C7BFF; font-size: 144px; }
     75% {transform: rotate(540deg); }
     100% {transform: rotate(720deg); background-color: #68A7FF; font-size: 32px; }
-
 }
 
 /*
@@ -123,17 +122,22 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 360px;
+    width: 480;
     margin-bottom: 10px;
-    font-size: 32px;
+    font-size: 24px;
+    padding: 5px;
 
+}
+
+.score-panel .clock, {
+    margin-right: 10px;
 }
 
 .score-panel .stars {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 15px 0 10px;
 }
 
 .score-panel .stars li {
@@ -141,9 +145,13 @@ h1 {
     display: inline-block;
 }
 
+.score-panel .moves, .score-panel .moves-label {
+    font-size: 24px;
+}
 .score-panel .reset-icon {
     float: right;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 
