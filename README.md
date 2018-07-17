@@ -9,7 +9,7 @@ This game is created from Udacity's [Memory Game](https://github.com/udacity/fen
 * [Instructions](#instructions)
 
 ## Demo
-[Game Demo](https://iBen.blue/memory-game/)
+[Game Demo](http://iben.blue/memory-match-game/)
 
 ## Gameplay
 
@@ -17,5 +17,5 @@ This is a game based on the classic Memory card game. The goal is to match all t
 
 ## Instructions
 
-Download the game archive from this [link](https://github.com/vjremo/Memory-Card-Game/releases), extract it to local folder.
+Download the game archive from this [link](https://github.com/Bluedimensional/Memory-Game/), extract it to local folder.
 Open the index.html in browser to launch the game.

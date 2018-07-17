@@ -1,5 +1,7 @@
 /*
  * Memory Card Matching Game
+ *
+ * Special thanks to Matt Cranford - https://matthewcranford.com - whose blog helped me a lot.
  */
 
 // Global variables
@@ -98,14 +100,11 @@ function checkForMatch() {
         matched++; // increment global variable
         if (matched === TOTAL_PAIRS) { // call gameOver if there are 8 pairs of cards open
             gameOver();
+            spinAllCards();
         }
 
     } else { // length of time unmatched cards stay open. shorter the time, higher the difficulty.
-        // TODO: apply CSS shake animation before
-        let nonMatch = document.querySelectorAll('.open');
-        for (card of nonMatch) {
-            card.className = 'card open show element-animation-shake';
-        }
+
         setTimeout(() => {
             toggleCard(toggledCards[0]);
             toggleCard(toggledCards[1]);
@@ -243,3 +242,21 @@ function resetGame() { // resets game without closing modal
     resetStars();
     shuffleDeck();
 }
+
+
+function spinAllCards() { // spin all cards upon successful game completion
+    let allMatchedCards = document.querySelectorAll('.card');
+    for (card of allMatchedCards) {
+        card.className = 'card show all-spin';
+    }
+}
+
+
+
+// TODO: when two cards do not match, apply a shake CSS animation.
+// TODO: bootstrap for better mobile play
+// TODO: add more stars / half star ratings
+// TODO: add leaderboard to store multiple games' scores
+// TODO: add capture to add users' initals after winning (or losing!) a game
+// TODO: create a scoreboard from CSS to hold the stars, timer, and moves counter.
+// TODO: move all completed matches into section below the board.
