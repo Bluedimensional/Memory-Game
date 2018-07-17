@@ -30,7 +30,7 @@ let clockOff = true;
 let time = 0;
 let clockId;
 let matched = 0;
-const TOTAL_PAIRS = 1; // 8 pairs wins a game - set to lower than 8 for testing
+const TOTAL_PAIRS = 2; // 8 pairs wins a game - set to lower than 8 for testing
 let nonMatch = document.querySelectorAll('.open'); //
 
 
@@ -67,6 +67,7 @@ deck.addEventListener('click', event => {
             checkForMatch(clickTarget);
             addMove();
             checkScore(); // call checkScore after every move
+            writeModalStats(); // write stats
 
         }
     }
@@ -171,7 +172,7 @@ function toggleModal() {
     modal.classList.toggle('hide');
 }
 
-writeModalStats(); // write stats
+
 
 function writeModalStats() {
     const timeStat = document.querySelector('.modal-time');
@@ -271,7 +272,12 @@ get and update
 */
 
 
+// TODO: when two cards do not match, apply a shake CSS animation.
+// TODO: when all cards are matched, spin all the cards in celebration.
+// TODO: bootstrap for better mobile play
+// TODO: add more stars / half star ratings
+// TODO: add leaderboard to store multiple games' scores
+// TODO: add capture to add users' initals after winning (or losing!) a game
+// TODO: create a scoreboard from CSS to hold the stars, timer, and moves counter.
+// TODO: move all completed matches into section below the board.
 
-// TODO: The game displays a star rating (from 1 to at least 3) that reflects the player's performance. At the beginning of a game, it should display at least 3 stars. After some number of moves, it should change to a lower star rating. After a few more moves, it should change to a even lower star rating (down to 1).
-
-// TODO: when two cards do not match, apply a shake CSS animation. When array contains two cards that
