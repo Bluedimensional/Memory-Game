@@ -30,7 +30,7 @@ let clockOff = true;
 let time = 0;
 let clockId;
 let matched = 0;
-const TOTAL_PAIRS = 2; // 8 pairs wins a game - set to lower than 8 for testing
+const TOTAL_PAIRS = 8; // 8 pairs wins a game - set to lower than 8 for testing
 let nonMatch = document.querySelectorAll('.open'); //
 
 
