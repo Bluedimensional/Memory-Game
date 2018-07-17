@@ -30,8 +30,8 @@ let clockOff = true;
 let time = 0;
 let clockId;
 let matched = 0;
-const TOTAL_PAIRS = 8; // 8 pairs wins a game - set to lower than 8 for testing
-let nonMatch = document.querySelectorAll('.open'); //
+const TOTAL_PAIRS = 2; // 8 pairs wins a game - set to lower than 8 for testing
+// let nonMatch = document.querySelectorAll('.open');
 
 
 function addMove() {
@@ -106,13 +106,15 @@ function checkForMatch() {
         toggledCards[1].classList.toggle('match');
         toggledCards = []; // reset the array
         matched++; // increment global variable
-         if (matched === TOTAL_PAIRS) {               // call gameOver if there are 8 pairs of cards open
-    gameOver();
-}
+        if (matched === TOTAL_PAIRS) {               // call gameOver if there are 8 pairs of cards open
+        gameOver();
+        spinAllCards();
+    }
 
     } else {                                           // length of time unmatched cards stay open. shorter the time, higher the difficulty.
         // TODO: apply CSS shake animation before
-
+        let nonMatch = document.querySelectorAll('.open');
+        nonMatch
         setTimeout(() => {
             toggleCard(toggledCards[0]);
             toggleCard(toggledCards[1]);
@@ -255,25 +257,23 @@ function resetGame() {     // resets game without closing modal
     shuffleDeck();
 }
 
+
+function spinAllCards() { // spin all cards upon successful game completion
+    let allMatchedCards = document.querySelectorAll('.card');
+    for (card of allMatchedCards) {
+        card.className = 'card show all-spin';
+    }
+}
+
+
 /*
  * TODO: create a "Matched Box" that will hold successfully matched pairs of cards.
  * goal: move li after .match id added to it, from ul.deck to ul.cleared. so, i need to cut the li.card and paste it into the other ul.cleared. jsut changing the class will not change its location in the tree.
-
-get and update
  *
- *
- *
- *
- *
- *
- *
- *
-
-*/
+ */
 
 
 // TODO: when two cards do not match, apply a shake CSS animation.
-// TODO: when all cards are matched, spin all the cards in celebration.
 // TODO: bootstrap for better mobile play
 // TODO: add more stars / half star ratings
 // TODO: add leaderboard to store multiple games' scores
