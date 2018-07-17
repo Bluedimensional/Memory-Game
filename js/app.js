@@ -1,3 +1,17 @@
+/*
+ * Memory Card Matching Game
+ */
+
+// Global variables
+const deck = document.querySelector('.deck');
+let moves = 0;
+let toggledCards = [];
+let clockOff = true;
+let time = 0;
+let clockId;
+let matched = 0;
+const TOTAL_PAIRS = 8; // 8 pairs wins a game - set to lower than 8 for testing
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length,
@@ -14,25 +28,13 @@ function shuffle(array) {
     return array;
 }
 
-// Global variables
-const deck = document.querySelector('.deck');
-let moves = 0;
-let toggledCards = [];
-let clockOff = true;
-let time = 0;
-let clockId;
-let matched = 0;
-const TOTAL_PAIRS = 2; // 8 pairs wins a game - set to lower than 8 for testing
-// let nonMatch = document.querySelectorAll('.open');
-
-
 function addMove() {
     moves++;
     const movesText = document.querySelector('.moves'); // get span.moves
     movesText.innerHTML = moves; // set span.moves' innerHTML to updated number moves
 }
 
-// shuffle the deck
+// Shuffle the deck
 function shuffleDeck() {
     const cardsToShuffle = Array.from(document.querySelectorAll('.deck li')); // stores elements to be shuffled as a nodeList
     const shuffledCards = shuffle(cardsToShuffle); // pass cardsToShuffle as an argument to shuffle and store as shuf
@@ -96,7 +98,6 @@ function checkForMatch() {
         matched++; // increment global variable
         if (matched === TOTAL_PAIRS) { // call gameOver if there are 8 pairs of cards open
             gameOver();
-            spinAllCards();
         }
 
     } else { // length of time unmatched cards stay open. shorter the time, higher the difficulty.
@@ -131,8 +132,6 @@ function hideStar() {
 
     }
 }
-// hideStar();
-// hideStar();
 
 // time and clock
 function displayTime() {
@@ -244,21 +243,3 @@ function resetGame() { // resets game without closing modal
     resetStars();
     shuffleDeck();
 }
-
-
-function spinAllCards() { // spin all cards upon successful game completion
-    let allMatchedCards = document.querySelectorAll('.card');
-    for (card of allMatchedCards) {
-        card.className = 'card show all-spin';
-    }
-}
-
-
-
-// TODO: when two cards do not match, apply a shake CSS animation.
-// TODO: bootstrap for better mobile play
-// TODO: add more stars / half star ratings
-// TODO: add leaderboard to store multiple games' scores
-// TODO: add capture to add users' initals after winning (or losing!) a game
-// TODO: create a scoreboard from CSS to hold the stars, timer, and moves counter.
-// TODO: move all completed matches into section below the board.
