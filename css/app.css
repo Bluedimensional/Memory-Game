@@ -27,11 +27,12 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-top: 50px
 }
 
 h1 {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-size: 3em;
 }
 
 /*
@@ -96,16 +97,17 @@ h1 {
 }
 
 .deck .card.show {
-    font-size: 48px;
+    font-size: 64px;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    font-size: 48px;
     transform: rotate(0deg) scale(0.7, 0.7) ;
     animation-name: card-match;
     animation-duration: .5s;
+    color: #eee;
 }
 
 @keyframes card-match {
@@ -339,8 +341,8 @@ h1 {
 .score-panel {
     text-align: left;
     width: 480;
-    margin-bottom: 10px;
-    font-size: 24px;
+    margin: 25px 0 15px 0;
+    font-size: 34px;
     padding: 5px;
 
 }
@@ -362,7 +364,7 @@ h1 {
 }
 
 .score-panel .moves, .score-panel .moves-label {
-    font-size: 24px;
+    font-size: 36px;
 }
 .score-panel .reset-icon {
     float: right;
@@ -441,3 +443,4 @@ h1 {
     /*align-items: left;*/
     margin: 0 0 3em;
  }
+
