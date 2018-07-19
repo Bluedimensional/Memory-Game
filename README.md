@@ -23,7 +23,7 @@ Download the game archive from this [link](https://github.com/Bluedimensional/Me
 
 This is a game based on the classic Memory card game. The goal is to match all the pairs of cards. Click or touch two cards. If they match, they will remain open, being successfully matched. If they do not match, they will flip back over. The better you remember the unmatched cards, the faster you can reveal all the matches. Upon successful completion, the game's star rating, time, and number of moves will be displayed.
 
-## Dependncies
+## Dependencies
 
 * [Font Awesome](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css).
 * [Google Fonts](https://fonts.googleapis.com/css?family=Coda).
