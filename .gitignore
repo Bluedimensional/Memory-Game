@@ -4,7 +4,8 @@
 .eslintrc.json
 project.docx
 livereload.js
-sftp.config.json
+sftp-config.json
 addMoves.js
 allSPinCards function and TODO.js
 nonMatch function.js
+
